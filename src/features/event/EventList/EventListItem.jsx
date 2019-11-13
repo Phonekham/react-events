@@ -15,6 +15,7 @@ class EventListItem extends Component {
       hostedBy,
       attendees
     } = this.props.event;
+    const { event, selectEvent } = this.props;
     return (
       <Segment.Group>
         <Segment>
@@ -49,7 +50,12 @@ class EventListItem extends Component {
         </Segment>
         <Segment clearing>
           <span>{description}</span>
-          <Button color="teal" floated="right" content="View" />
+          <Button
+            onClick={() => selectEvent(event)}
+            color="teal"
+            floated="right"
+            content="View"
+          />
         </Segment>
       </Segment.Group>
     );
