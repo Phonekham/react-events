@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
-import { Container } from "semantic-ui-react";
 import { Route } from "react-router-dom";
+import { Container } from "semantic-ui-react";
 
 import NavBar from "../../features/nav/NavBar/NavBar";
 import HomePage from "../../features/home/HomePage";
@@ -15,16 +15,23 @@ class App extends React.Component {
   render() {
     return (
       <Fragment>
-        <NavBar></NavBar>
-        <Container className="main">
-          <Route exact path="/" component={HomePage}></Route>
-          <Route path="/events" component={EventDashboard}></Route>
-          <Route path="/events/:id" component={EventDetailedPage}></Route>
-          <Route path="/people" component={PeopleDashboard}></Route>
-          <Route path="/profile/:id" component={UserDetailedPage}></Route>
-          <Route path="/settings" component={SettingsDashboard}></Route>
-          <Route path="/createEvent" component={EventForm}></Route>
-        </Container>
+        <Route exact path="/" component={HomePage}></Route>
+        <Route
+          path="/(.+)"
+          render={() => (
+            <Fragment>
+              <NavBar></NavBar>
+              <Container className="main">
+                <Route exact path="/events" component={EventDashboard}></Route>
+                <Route path="/events/:id" component={EventDetailedPage}></Route>
+                <Route path="/people" component={PeopleDashboard}></Route>
+                <Route path="/profile/:id" component={UserDetailedPage}></Route>
+                <Route path="/settings" component={SettingsDashboard}></Route>
+                <Route path="/createEvent" component={EventForm}></Route>
+              </Container>
+            </Fragment>
+          )}
+        />
       </Fragment>
     );
   }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment, Item, Icon, List, Image, Button } from "semantic-ui-react";
+import { Segment, Item, Icon, List, Button } from "semantic-ui-react";
 import EventListAttendee from "./EventListAttendee";
 
 class EventListItem extends Component {
@@ -8,9 +8,7 @@ class EventListItem extends Component {
       hostPhotoURL,
       title,
       date,
-      category,
       description,
-      city,
       venue,
       hostedBy,
       attendees
@@ -24,9 +22,7 @@ class EventListItem extends Component {
               <Item.Image size="tiny" circular src={hostPhotoURL} />
               <Item.Content>
                 <Item.Header>{title}</Item.Header>
-                <Item.Description>
-                  Hosted by <a>{hostedBy}</a>
-                </Item.Description>
+                <Item.Description>Hosted by {hostedBy}</Item.Description>
               </Item.Content>
             </Item>
           </Item.Group>
