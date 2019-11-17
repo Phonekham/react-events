@@ -9,8 +9,6 @@ import {
 } from "semantic-ui-react";
 
 const HomePage = ({ history }) => {
-  console.log(history);
-
   return (
     <Segment inverted textAlign="center" vertical className="masthead">
       <Container text>
