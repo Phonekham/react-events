@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Grid } from "semantic-ui-react";
 import { connect } from "react-redux";
-import cuid from "cuid";
 import { createEvent, updateEvent, deleteEvent } from "../eventActions";
 
 import EventList from "../EventList/EventList";
@@ -10,16 +9,6 @@ class EventDashboard extends Component {
   state = {
     isOpen: false,
     selectedEvent: null
-  };
-
-  handleCreateEvent = newEvent => {
-    newEvent.id = cuid();
-    newEvent.hostPhotoURL = "/assets/user.png";
-    this.props.createEvent(newEvent);
-  };
-
-  handleUpdateEvent = updatedEvent => {
-    this.props.updateEvent(updatedEvent);
   };
 
   handleDeleteEvent = id => {
