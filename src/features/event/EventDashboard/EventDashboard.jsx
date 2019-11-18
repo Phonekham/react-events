@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Grid, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import cuid from "cuid";
+import { createEvent, updateEvent, deleteEvent } from "../eventActions";
 
 import EventList from "../EventList/EventList";
 import EventForm from "../EventForm/EventForm";
@@ -31,8 +32,8 @@ class EventDashboard extends Component {
   handleCreateEvent = newEvent => {
     newEvent.id = cuid();
     newEvent.hostPhotoURL = "/assets/user.png";
-    this.setState(({ events }) => ({
-      events: [...events, newEvent],
+    this.props.createEvent(newEvent);
+    this.setState(() => ({
       isOpen: false
     }));
   };
@@ -42,23 +43,15 @@ class EventDashboard extends Component {
   };
 
   handleUpdateEvent = updatedEvent => {
-    this.setState(({ events }) => ({
-      events: events.map(event => {
-        if (event.id === updatedEvent.id) {
-          return { ...updatedEvent };
-        } else {
-          return event;
-        }
-      }),
+    this.props.updateEvent(updatedEvent);
+    this.setState(() => ({
       isOpen: false,
       selectedEvent: null
     }));
   };
 
   handleDeleteEvent = id => {
-    this.setState(({ events }) => ({
-      events: events.filter(e => e.id !== id)
-    }));
+    this.props.deleteEvent(id);
   };
 
   render() {
@@ -94,8 +87,14 @@ class EventDashboard extends Component {
   }
 }
 
+const actions = {
+  createEvent,
+  updateEvent,
+  deleteEvent
+};
+
 const mapStateToProps = state => ({
   events: state.events
 });
 
-export default connect(mapStateToProps)(EventDashboard);
+export default connect(mapStateToProps, actions)(EventDashboard);
