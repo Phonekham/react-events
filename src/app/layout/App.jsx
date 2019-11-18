@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Container } from "semantic-ui-react";
-import { Route } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 
 import NavBar from "../../features/nav/NavBar/NavBar";
 import HomePage from "../../features/home/HomePage";
@@ -19,17 +19,22 @@ class App extends React.Component {
         <Route exact path="/" component={HomePage} />
         <NavBar></NavBar>
         <Container className="main">
-          <Route exact path="/events" component={EventDashboard}></Route>
-          <Route path="/events/:id" component={EventDetailedPage}></Route>
-          <Route path="/people" component={PeopleDashboard}></Route>
-          <Route path="/profile/:id" component={UserDetailedPage}></Route>
-          <Route path="/settings" component={SettingsDashboard}></Route>
-          <Route path="/createEvent" component={EventForm}></Route>
-          <Route path="/test" component={TestComponent}></Route>
+          <Switch key={this.props.location.key}>
+            <Route exact path="/events" component={EventDashboard}></Route>
+            <Route path="/events/:id" component={EventDetailedPage}></Route>
+            <Route path="/people" component={PeopleDashboard}></Route>
+            <Route path="/profile/:id" component={UserDetailedPage}></Route>
+            <Route path="/settings" component={SettingsDashboard}></Route>
+            <Route
+              path={["/createEvent", "/manage/:id"]}
+              component={EventForm}
+            ></Route>
+            <Route path="/test" component={TestComponent}></Route>
+          </Switch>
         </Container>
       </Fragment>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
