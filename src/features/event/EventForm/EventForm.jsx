@@ -6,11 +6,21 @@ import { Segment, Form, Button, Grid, Header } from "semantic-ui-react";
 import { createEvent, updateEvent } from "../eventActions";
 import TextInput from "../../../app/common/form/TextInput";
 import TextArea from "../../../app/common/form/TextArea";
+import SelectInput from "../../../app/common/form/SelectInput";
 
 const actions = {
   createEvent,
   updateEvent
 };
+
+const category = [
+  { key: "drinks", text: "Drinks", value: "drinks" },
+  { key: "culture", text: "Culture", value: "culture" },
+  { key: "film", text: "Film", value: "film" },
+  { key: "food", text: "Food", value: "food" },
+  { key: "music", text: "Music", value: "music" },
+  { key: "travel", text: "Travel", value: "travel" }
+];
 
 const mapStateToProps = (state, ownProps) => {
   const eventId = ownProps.match.params.id;
@@ -58,8 +68,10 @@ class EventForm extends Component {
               ></Field>
               <Field
                 name="category"
-                component={TextInput}
+                component={SelectInput}
                 placeholder="category"
+                options={category}
+                multiple={true}
               ></Field>
               <Field
                 name="description"
