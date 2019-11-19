@@ -3,8 +3,6 @@ import { Form, Select, Label } from "semantic-ui-react";
 
 const SelectInput = ({
   input,
-
-  type,
   placeholder,
   meta: { touched, error },
   multiple,

@@ -3,7 +3,6 @@ import { Form, Label } from "semantic-ui-react";
 
 const TextArea = ({
   input,
-  width,
   rows,
   type,
   placeholder,
