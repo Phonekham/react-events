@@ -9,10 +9,12 @@ import {
 } from "revalidate";
 import cuid from "cuid";
 import { Segment, Form, Button, Grid, Header } from "semantic-ui-react";
+
 import { createEvent, updateEvent } from "../eventActions";
 import TextInput from "../../../app/common/form/TextInput";
 import TextArea from "../../../app/common/form/TextArea";
 import SelectInput from "../../../app/common/form/SelectInput";
+import DateInput from "../../../app/common/form/DateInput";
 
 const actions = {
   createEvent,
@@ -28,8 +30,9 @@ const validate = combineValidators({
       message: "The event description need than 4 chars"
     })
   )(),
-  city: isRequired({ message: "city is required" }),
-  venue: isRequired({ message: "venue is required" })
+  city: isRequired("city is required"),
+  venue: isRequired("venue is required"),
+  date: isRequired("date")
 });
 
 const category = [
@@ -116,8 +119,10 @@ class EventForm extends Component {
               ></Field>
               <Field
                 name="date"
-                component={TextInput}
-                placeholder="date"
+                component={DateInput}
+                dateFormat="dd LLL yyyy h:mm a"
+                timeFormat="HH:mm"
+                placeholder="Event Date"
               ></Field>
               <Button
                 positive
