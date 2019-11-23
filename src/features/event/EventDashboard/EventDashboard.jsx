@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { createEvent, updateEvent, deleteEvent } from "../eventActions";
 
 import EventList from "../EventList/EventList";
+import ComponentLoading from "../../../app/layout/ComponentLoading";
 
 class EventDashboard extends Component {
   state = {
@@ -16,7 +17,8 @@ class EventDashboard extends Component {
   };
 
   render() {
-    const { events } = this.props;
+    const { events, loading } = this.props;
+    if (loading) return <ComponentLoading></ComponentLoading>;
     return (
       <Grid>
         <Grid.Column width={10}>
@@ -40,7 +42,8 @@ const actions = {
 };
 
 const mapStateToProps = state => ({
-  events: state.events
+  events: state.events,
+  loading: state.async.loading
 });
 
 export default connect(mapStateToProps, actions)(EventDashboard);
