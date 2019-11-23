@@ -11,11 +11,13 @@ import SettingsDashboard from "../../features/user/Settings/SettingsDashboard";
 import EventForm from "../../features/event/EventForm/EventForm";
 import PeopleDashboard from "../../features/user/PeopleDashboard/PeopleDashboard";
 import TestComponent from "../../features/testarea/TestComponent";
+import ModalManager from "../../features/modals/ModalManager";
 
 class App extends React.Component {
   render() {
     return (
       <Fragment>
+        <ModalManager></ModalManager>
         <Route exact path="/" component={HomePage} />
         <NavBar></NavBar>
         <Container className="main">
