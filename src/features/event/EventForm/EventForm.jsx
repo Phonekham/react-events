@@ -119,9 +119,9 @@ class EventForm extends Component {
               ></Field>
               <Field
                 name="date"
-                component={DateInput}
-                dateFormat="dd LLL yyyy h:mm a"
-                timeFormat="HH:mm"
+                component={TextInput}
+                // dateFormat="dd LLL yyyy h:mm a"
+                // timeFormat="HH:mm"
                 placeholder="Event Date"
               ></Field>
               <Button
