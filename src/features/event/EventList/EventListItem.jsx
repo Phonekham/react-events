@@ -31,18 +31,17 @@ class EventListItem extends Component {
         </Segment>
         <Segment>
           <span>
-            <Icon name="clock" />{" "}
-            {date && format(parseISO(date), "EEEE do LLL")} at{" "}
-            {format(parseISO(date), "h:mm a")} |
+            <Icon name="clock" /> {date && format(date.toDate(), "EEEE do LLL")}{" "}
+            at {format(date.toDate(), "h:mm a")} |
             <Icon name="marker" /> {venue}
           </span>
         </Segment>
         <Segment secondary>
           <List horizontal>
-            {Event.attendee &&
-              attendees.map(attendee => (
+            {event.attendees &&
+              Object.values(attendees).map((attendee, index) => (
                 <EventListAttendee
-                  key={attendee.id}
+                  key={index}
                   attendee={attendee}
                 ></EventListAttendee>
               ))}

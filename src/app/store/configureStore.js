@@ -16,7 +16,8 @@ export const configureStore = () => {
   const middlewares = [thunk.withExtraArgument({ getFirebase, getFirestore })];
   const composeEnhancer = composeWithDevTools(
     applyMiddleware(...middlewares),
-    reactReduxFirebase(firebase, rrfConfig, reduxFirestore(firebase))
+    reactReduxFirebase(firebase, rrfConfig),
+    reduxFirestore(firebase)
   );
   const store = createStore(rootReducer, composeEnhancer);
   return store;
