@@ -5,6 +5,7 @@ import { createEvent, updateEvent, deleteEvent } from "../eventActions";
 
 import EventList from "../EventList/EventList";
 import ComponentLoading from "../../../app/layout/ComponentLoading";
+import EventActivity from "../EventActivity/EventActivity";
 
 class EventDashboard extends Component {
   state = {
@@ -28,7 +29,7 @@ class EventDashboard extends Component {
           ></EventList>
         </Grid.Column>
         <Grid.Column width={6}>
-          <h2>Activity Feed</h2>
+          <EventActivity></EventActivity>
         </Grid.Column>
       </Grid>
     );
