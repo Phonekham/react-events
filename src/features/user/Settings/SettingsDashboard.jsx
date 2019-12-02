@@ -14,7 +14,13 @@ const actions = {
   updatePassword
 };
 
-const SettingsDashboard = ({ updatePassword }) => {
+const mapState = state => ({
+  providerId:
+    // state.firebase.auth.isLoaded &&      This is alternative way
+    state.firebase.auth.providerData[0].providerId
+});
+
+const SettingsDashboard = ({ updatePassword, providerId }) => {
   return (
     <Grid>
       <Grid.Column width={12}>
@@ -26,7 +32,10 @@ const SettingsDashboard = ({ updatePassword }) => {
           <Route
             path="/settings/account"
             render={() => (
-              <AccountPage updatePassword={updatePassword}></AccountPage>
+              <AccountPage
+                updatePassword={updatePassword}
+                providerId={providerId}
+              ></AccountPage>
             )}
           ></Route>
         </Switch>
@@ -38,4 +47,4 @@ const SettingsDashboard = ({ updatePassword }) => {
   );
 };
 
-export default connect(null, actions)(SettingsDashboard);
+export default connect(mapState, actions)(SettingsDashboard);
